@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import NewsItem from './NewsItem'
 const NewsList = () => {
-    const [articles, setArticles] = useState([])
-    const apiKey=process.env.REACT_APP_NEWS_API_KEY;
+    const [articles, setArticles] = useState([]);
     useEffect(() => {
         const getArticles = async () => {
-            const response = await axios.get(`https://newsapi.org/v2/everything?q=football&apiKey=${apiKey}`)
+            const response = await axios.get(`https://newsapi.org/v2/everything?q=football&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
             setArticles(response.data.articles)
             console.log(response)
         }
