@@ -1,32 +1,27 @@
 import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
-import "./NewsContent.css";
-import { Container } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 
-const NewsContent = ({ newsArray, loadMore, setLoadMore, newsResults }) => {
+export default function NewsContent({ newsArray, loadMore, setLoadMore, newsResults }) {
   return (
-    <Container maxWidth="md">
-      <div className="content">
-        {/* First this */}
+    <Box sx={{ flexGrow: 1, padding: { xs: '10px', sm: '15px', md: '20px' }, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* First this */}
+      <Grid container spacing={3}>
         {newsArray.map((newsItem) => (
-          <NewsCard newsItem={newsItem} key={newsItem.title} />
+          <Grid item xs={12} sm={8} md={6} lg={4} key={newsItem.title}>
+            <NewsCard newsItem={newsItem} />
+          </Grid>
         ))}
-
-        {/* Then this */}
-        {loadMore <= newsResults && (
-          <>
-            <hr />
-            <button
-              className="loadMore"
-              onClick={() => setLoadMore(loadMore + 20)}
-            >
-              Load More
-            </button>
-          </>
-        )}
-      </div>
-    </Container>
+      </Grid>
+      {/* Then this */}
+      {loadMore <= newsResults && (
+        <>
+          <hr />
+          <Button variant="outlined" onClick={() => setLoadMore(loadMore + 20)}>
+            Load More
+          </Button>
+        </>
+      )}
+    </Box>
   );
-};
-
-export default NewsContent;
+}

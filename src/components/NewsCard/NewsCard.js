@@ -1,55 +1,51 @@
-import React from "react";
-import "./NewsCard.css";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const NewsCard = ({ newsItem }) => {
-  // console.log(newsItem);
-
-  //2021-01-09T12:15:30Z
-  const fulldate = new Date(newsItem.publishedAt); // Sat  Jan 09 2021  17:45:30  GMT+0530
-  var date = fulldate.toString().split(" "); // ["Sat", "Jan", "09", "2021", "17:45:30", "GMT+0530"]
-  const hour = parseInt(date[4].substring(0, 2)); //
+  const fulldate = new Date(newsItem.publishedAt);
+  var date = fulldate.toString().split(" ");
+  const hour = parseInt(date[4].substring(0, 2));
   const time = hour > 12 ? true : false;
 
   return (
-    <div className="newsCard">
-      <img
-        alt={newsItem.title}
-        src={
+    <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '345' }}>
+      <CardMedia
+        component="img"
+        height="300"
+        image={
           newsItem.urlToImage
             ? newsItem.urlToImage
             : "http://www.aaru.edu.jo/websites/aaru2/wp-content/plugins/learnpress/assets/images/no-image.png?Mobile=1&Source=%2F%5Flayouts%2Fmobile%2Fdispform%2Easpx%3FList%3D78b536db%252De7c7%252D45d9%252Da661%252Ddb2a2aa2fbaf%26View%3D6efc759a%252D0646%252D433c%252Dab6e%252D2f027ffe0799%26RootFolder%3D%252Fwebsites%252Faaru2%252Fwp%252Dcontent%252Fplugins%252Flearnpress%252Fassets%252Fimages%26ID%3D4786%26CurrentPage%3D1"
         }
-        className="newsImage"
+        alt={newsItem.title}
       />
-      <div className="newsText">
-        <div>
-          <span className="title">{newsItem.title}</span>
-          <br />
-          <span className="author">
-            <a href={newsItem.url} target="__blank">
-              <b>short </b>
-            </a>{" "}
-            <span className="muted">
-              {" "}
-              by {newsItem.author ? newsItem.author : "unknown"} /{" "}
-              {time
-                ? `${hour - 12}:${date[4].substring(3, 5)} pm`
-                : `${hour}:${date[4].substring(3, 5)} am`}{" "}
-              on {date[2]} {date[1]} {date[3]}, {date[0]}
-            </span>
-          </span>
-        </div>
-        <div className="lowerNewsText">
-          <div className="description">{newsItem.description}</div>
-          <span className="readmore">
-            read more at{" "}
-            <a href={newsItem.url} target="__blank" className="source">
-              <b>{newsItem.source.name}</b>
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
+      <CardContent sx={{ flexGrow: 1, justifyContent: 'space-between' }}>
+        <Typography gutterBottom variant="h5" component="div">
+          {newsItem.title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {newsItem.description}
+        </Typography>
+      </CardContent>
+      <Typography variant="h7" color="text.secondary" sx={{ marginLeft: 2, marginBottom: 1 }}>
+        {newsItem.author ? `By: ${newsItem.author}` : "Author: Unknown"} /{" "}
+        {time
+          ? `${hour - 12}:${date[4].substring(3, 5)} pm`
+          : `${hour}:${date[4].substring(3, 5)} am`}{" "}
+        on {date[2]} {date[1]} {date[3]}, {date[0]}
+      </Typography>
+
+      <CardActions>
+        <Button size="small" href={newsItem.url} target="__blank">
+          Read More at {newsItem.source.name}
+        </Button>
+      </CardActions>
+    </Card>
   );
 };
 
