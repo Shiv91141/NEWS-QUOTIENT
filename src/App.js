@@ -8,7 +8,7 @@ import NewsContent from './components/NewsContent/NewsContent';
 function App() {
   const [newsArray, setNewsArray] = useState([]);
   const [newsResults, setNewsResults] = useState();
-  const [loadMore, setLoadMore] = useState(20);
+  const [loadMore, setLoadMore] = useState(18);
   const [category, setCategory] = useState("general");
   const [searchType, setSearchType] = useState("category");
   const [text, setText] = useState('');

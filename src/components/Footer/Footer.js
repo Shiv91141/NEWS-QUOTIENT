@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <span className="name">
-        News Aggregator made by -{" "}
+        NewsQuotient made by -{" "}
         <a href="https://www.linkedin.com/in/shivam-jain-93534b246" target="__blank">
           Shivam Jain
         </a>

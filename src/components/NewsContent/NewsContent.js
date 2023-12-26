@@ -4,7 +4,8 @@ import { Box, Button, Grid } from "@mui/material";
 
 export default function NewsContent({ newsArray, loadMore, setLoadMore, newsResults }) {
   return (
-    <Box sx={{ flexGrow: 1, padding: { xs: '10px', sm: '15px', md: '20px' }, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <>
+    <Box sx={{ flexGrow: 1, padding: { xs: '10px', sm: '15px', md: '20px' ,lg: '25px'}, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {/* First this */}
       <Grid container spacing={3}>
         {newsArray.map((newsItem) => (
@@ -13,15 +14,15 @@ export default function NewsContent({ newsArray, loadMore, setLoadMore, newsResu
           </Grid>
         ))}
       </Grid>
+    </Box>
+    <Box sx={{textAlign:'center',marginBottom:'10px'}}>
       {/* Then this */}
       {loadMore <= newsResults && (
-        <>
-          <hr />
-          <Button variant="outlined" onClick={() => setLoadMore(loadMore + 20)}>
+          <Button variant="outlined" onClick={() => setLoadMore(loadMore + 18)} sx={{ '&:hover': { color: '#105dab' } }}>
             Load More
           </Button>
-        </>
       )}
     </Box>
+    </>
   );
 }

@@ -58,7 +58,7 @@ export default function NavHamburger({ setCategory, setSearchType, setSortBy }) 
         {sortBy.map((text) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={() => { setSortBy(text) }}>
-              <ListItemText primary={text=="publishedAt"?"Newest":handleCaptalise(text)} />
+              <ListItemText primary={text==="publishedAt"?"Newest":handleCaptalise(text)} />
             </ListItemButton>
           </ListItem>
         ))}

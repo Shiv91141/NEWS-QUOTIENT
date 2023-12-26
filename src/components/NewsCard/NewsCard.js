@@ -13,7 +13,7 @@ const NewsCard = ({ newsItem }) => {
   const time = hour > 12 ? true : false;
 
   return (
-    <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%', maxWidth: '345' }}>
+    <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' ,boxShadow: '0 5px 8px 0 rgba(0, 0, 0, 0.3)'}}>
       <CardMedia
         component="img"
         height="300"
@@ -25,8 +25,10 @@ const NewsCard = ({ newsItem }) => {
         alt={newsItem.title}
       />
       <CardContent sx={{ flexGrow: 1, justifyContent: 'space-between' }}>
-        <Typography gutterBottom variant="h5" component="div">
-          {newsItem.title}
+        <Typography gutterBottom variant="h5" component="div" sx={{ '&:hover': { color: '#105dab' } }}>
+          <a href={newsItem.url} target="__blank">
+            {newsItem.title}
+          </a>
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {newsItem.description}
@@ -41,8 +43,10 @@ const NewsCard = ({ newsItem }) => {
       </Typography>
 
       <CardActions>
-        <Button size="small" href={newsItem.url} target="__blank">
-          Read More at {newsItem.source.name}
+        <Button size="small" sx={{ '&:hover': { color: '#105dab' } }}>
+          <a href={newsItem.url} target="__blank">
+            Read More at {newsItem.source.name}
+          </a>
         </Button>
       </CardActions>
     </Card>

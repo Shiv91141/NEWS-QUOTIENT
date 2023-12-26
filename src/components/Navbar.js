@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -29,7 +29,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
@@ -51,52 +50,46 @@ const SearchIconButton = styled(IconButton)(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-export default function SearchAppBar({ setCategory, setText, setSearchType ,setSortBy}) {
+export default function SearchAppBar({ setCategory, setText, setSearchType, setSortBy }) {
   const [currText, setCurrText] = React.useState('');
 
   const handleChange = (e) => {
-    const newText = e.target.value || ''; // Prevent setting currText to undefined
+    const newText = e.target.value || '';
     setCurrText(newText);
-    console.log('handle change fired')
-};
-
+  };
 
   const handleSubmit = (e) => {
-    console.log('Before preventDefault');
     e.preventDefault();
-    console.log('After preventDefault');
     setText(currText);
     setSearchType('default');
- };
- 
+  };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <NavHamburger setCategory={setCategory} setSearchType={setSearchType} setSortBy={setSortBy}/>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            NEWS AGGREGATOR
-          </Typography>
-          <Search onSubmit={handleSubmit}>
-            <SearchIconButton type="submit" aria-label="search">
-              <SearchIcon />
-            </SearchIconButton>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              value={currText}
-              onChange={handleChange}
-            />
-          </Search>
-
-        </Toolbar>
-      </AppBar>
-    </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <NavHamburger setCategory={setCategory} setSearchType={setSearchType} setSortBy={setSortBy} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            >
+              NEWS QUOTIENT
+            </Typography>
+            <Search onSubmit={handleSubmit}>
+              <SearchIconButton type="submit" aria-label="search">
+                <SearchIcon />
+              </SearchIconButton>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                value={currText}
+                onChange={handleChange}
+              />
+            </Search>
+          </Toolbar>
+        </AppBar>
+      </Box>
   );
 }
