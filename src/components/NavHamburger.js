@@ -6,16 +6,14 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import {createTheme } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import categories from '../data/category';
+import sortBy from '../data/sortBy';
 
-export default function NavHamburger({setCategory,setSearchType}) {
+export default function NavHamburger({setCategory,setSearchType,setSortBy}) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -47,6 +45,22 @@ export default function NavHamburger({setCategory,setSearchType}) {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <List>
+          <ListItem>
+              SortBy
+          </ListItem>
+      </List>
+      <Divider />
+      <List>
+        {sortBy.map((text) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton onClick={()=>{setSortBy(text)}}>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider/>
       <List>
           <ListItem>
               Categories
