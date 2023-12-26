@@ -15,7 +15,7 @@ import {createTheme } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import categories from '../data/category';
 
-export default function NavHamburger({setCategory}) {
+export default function NavHamburger({setCategory,setSearchType}) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -56,7 +56,7 @@ export default function NavHamburger({setCategory}) {
       <List>
         {categories.map((text) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton onClick={()=>{setCategory(text)}}>
+            <ListItemButton onClick={()=>{setCategory(text);setSearchType("category");}}>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
