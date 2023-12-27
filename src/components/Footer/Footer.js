@@ -18,7 +18,7 @@ export default function Footer() {
         <a href="https://www.linkedin.com/in/shivam-jain-93534b246" target="__blank">
           <i className="fab fa-linkedin fa-2x"></i>
         </a>
-        <a href="#" target="__blank">
+        <a href="https://www.linkedin.com/in/shivam-jain-93534b246" target="__blank">
           <i className="fas fa-link fa-2x"></i>
         </a>
       </div>
