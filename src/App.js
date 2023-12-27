@@ -23,7 +23,7 @@ function App() {
 
       const news = await axios.get(apiUrl);
 
-      console.log("searchCategory fired");
+      // console.log("searchCategory fired");
       setNewsArray(news.data.articles);
       setNewsResults(news.data.totalResults);
     } catch (error) {
@@ -47,7 +47,7 @@ function App() {
 
       const news = await axios.get(apiUrl);
 
-      console.log("searchArticle fired");
+      // console.log("searchArticle fired");
       setNewsArray(news.data.articles);
       setNewsResults(news.data.totalResults);
     } catch (error) {
@@ -56,7 +56,7 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('Effect triggered');
+    // console.log('Effect triggered');
     const fetchData = async () => {
       try {
         if (searchType === "category") {
@@ -68,8 +68,9 @@ function App() {
         console.error('Error fetching data:', error.message);
       }
     };
-
+    
     fetchData();
+    // eslint-disable-next-line
   }, [category, loadMore, text, searchType, sortBy, fromDate, toDate]);
 
   return (
