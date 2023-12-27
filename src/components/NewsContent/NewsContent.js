@@ -7,9 +7,9 @@ export default function NewsContent({ newsArray, loadMore, setLoadMore, newsResu
     <>
     <Box sx={{ flexGrow: 1, padding: { xs: '10px', sm: '15px', md: '20px' ,lg: '25px'}, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {/* First this */}
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{justifyContent:'center'}}>
         {newsArray.map((newsItem) => (
-          <Grid item xs={12} sm={8} md={6} lg={4} key={newsItem.title}>
+          <Grid item xs={12} sm={12} md={6} lg={4} key={newsItem.title}>
             <NewsCard newsItem={newsItem} />
           </Grid>
         ))}

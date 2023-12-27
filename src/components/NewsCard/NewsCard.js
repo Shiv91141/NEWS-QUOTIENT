@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const NewsCard = ({ newsItem }) => {
+export default function NewsCard({ newsItem }) {
   const fulldate = new Date(newsItem.publishedAt);
   var date = fulldate.toString().split(" ");
   const hour = parseInt(date[4].substring(0, 2));
@@ -50,7 +50,5 @@ const NewsCard = ({ newsItem }) => {
         </Button>
       </CardActions>
     </Card>
-  );
-};
-
-export default NewsCard;
+  )
+}

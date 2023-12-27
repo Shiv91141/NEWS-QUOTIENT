@@ -4,20 +4,23 @@ import Navbar from './components/Navbar';
 import axios from 'axios';
 import Footer from './components/Footer/Footer';
 import NewsContent from './components/NewsContent/NewsContent';
+import { Typography } from '@mui/material';
 
 function App() {
   const [newsArray, setNewsArray] = useState([]);
   const [newsResults, setNewsResults] = useState();
   const [loadMore, setLoadMore] = useState(18);
-  const [category, setCategory] = useState("general");
-  const [searchType, setSearchType] = useState("category");
+  const [category, setCategory] = useState("general");//Defult Category->general
+  const [searchType, setSearchType] = useState("category");//Default serchType->category 
   const [text, setText] = useState('');
   const [sortBy, setSortBy] = useState("relevance"); // Default sort by relevance
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
 
   const searchCategory = async () => {
     try {
       let apiUrl = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_NEWS_API_KEY}&pageSize=${loadMore}&category=${category}`;
-     
+
       const news = await axios.get(apiUrl);
 
       console.log("searchCategory fired");
@@ -32,6 +35,16 @@ function App() {
     try {
       let apiUrl = `https://newsapi.org/v2/everything?q=${text}&apiKey=${process.env.REACT_APP_NEWS_API_KEY}&pageSize=${loadMore}&sortBy=${sortBy}`;
 
+      if (fromDate) {
+        const formattedFromDate = new Date(fromDate).toISOString().split('T')[0];
+        apiUrl += `&from=${formattedFromDate}`;
+      }
+
+      if (toDate) {
+        const formattedToDate = new Date(toDate).toISOString().split('T')[0];
+        apiUrl += `&to=${formattedToDate}`;
+      }
+
       const news = await axios.get(apiUrl);
 
       console.log("searchArticle fired");
@@ -43,6 +56,7 @@ function App() {
   };
 
   useEffect(() => {
+    console.log('Effect triggered');
     const fetchData = async () => {
       try {
         if (searchType === "category") {
@@ -56,7 +70,7 @@ function App() {
     };
 
     fetchData();
-  }, [category, loadMore, text, searchType, sortBy]);
+  }, [category, loadMore, text, searchType, sortBy, fromDate, toDate]);
 
   return (
     <div className="App">
@@ -65,15 +79,19 @@ function App() {
         setText={setText}
         setSearchType={setSearchType}
         setSortBy={setSortBy}
+        setFromDate={setFromDate}
+        setToDate={setToDate}
       />
-      {newsResults && (
+      {newsResults != 0 ? (
         <NewsContent
           newsArray={newsArray}
           newsResults={newsResults}
           loadMore={loadMore}
           setLoadMore={setLoadMore}
         />
-      )}
+      ) : <Typography>
+        No Results Found
+      </Typography>}
       <Footer />
     </div>
   );

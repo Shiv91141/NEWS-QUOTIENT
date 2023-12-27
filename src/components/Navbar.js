@@ -50,7 +50,7 @@ const SearchIconButton = styled(IconButton)(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-export default function SearchAppBar({ setCategory, setText, setSearchType, setSortBy }) {
+export default function SearchAppBar({ setCategory, setText, setSearchType, setSortBy, setFromDate, setToDate}) {
   const [currText, setCurrText] = React.useState('');
 
   const handleChange = (e) => {
@@ -68,7 +68,13 @@ export default function SearchAppBar({ setCategory, setText, setSearchType, setS
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <NavHamburger setCategory={setCategory} setSearchType={setSearchType} setSortBy={setSortBy} />
+            <NavHamburger 
+            setCategory={setCategory} 
+            setSearchType={setSearchType} 
+            setSortBy={setSortBy}  
+            setFromDate={setFromDate}
+            setToDate={setToDate}
+            />
             <Typography
               variant="h6"
               noWrap
