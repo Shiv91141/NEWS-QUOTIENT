@@ -82,7 +82,7 @@ function App() {
         setFromDate={setFromDate}
         setToDate={setToDate}
       />
-      {newsResults != 0 ? (
+      {newsResults !== 0 ? (
         <NewsContent
           newsArray={newsArray}
           newsResults={newsResults}
