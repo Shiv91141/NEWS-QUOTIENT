@@ -1,3 +1,8 @@
+## Demo Video
+
+Check out the demo video for a quick overview of the project:
+[![Demo Video](https://drive.google.com/uc?export=download&id=1QoORlbyawiK52xxuwT5I2dSLElsAJ_Rd)](https://drive.google.com/uc?export=download&id=1QoORlbyawiK52xxuwT5I2dSLElsAJ_Rd)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
